@@ -122,7 +122,7 @@ select {
 body {
   font-family: var(--ff-body);
   font-size: var(--fs-400);
-  color: var(--clr-neutral-900);
+  color: #000;
 }
 
 h1,
@@ -139,7 +139,10 @@ strong {
 
 section,
 .section {
-  padding: min(10vh, 10em) 0;
+  padding-bottom: min(5vh, 5em);
+  padding-top: min(5vh, 5em);
+  padding-left: 0;
+  padding-right: 0;
 }
 
 
@@ -180,7 +183,7 @@ section,
 
 .article-title,
 .section-title {
-  color: var(--clr-primary-500);
+  color: #000;
 }
 
 .article-title {
@@ -191,18 +194,65 @@ section,
   font-size: var(--fs-600);
 }
 
+h1.section-title {
+  margin-bottom: 50px;
+}
 
 /* //////////////////////
   Header
   /////////////////////// */
 
+  /* Logo Styling ChatGPT */
+
+  .logo {
+    display: flex;
+    justify-content: center; /* Centers logo horizontally within the div */
+    align-items: center; /* Centers logo vertically within the div */
+}
+
+  /* Base styling for the logo */
+#myLogo {
+  fill: #fc044c; /* Base color */
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+  height: 50px;
+  width: 100px;
+  object-fit: cover; 
+}
+
+/* Hover effect */
+#myLogo:hover {
+  fill: #fc044c; /* Change color on hover */
+  transform: scale(1.1); /* Slightly enlarge the logo on hover */
+}
+
+/* Styling specific parts of the SVG */
+#myLogo circle {
+  stroke: #333; /* Circle border color */
+  stroke-width: 2; /* Circle border width */
+}
+
+#myLogo text {
+  font-family: 'Arial', sans-serif; /* Font for the text inside the logo */
+  fill: #FFF; /* Text color */
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  #myLogo {
+      width: 70px; /* Adjust size for smaller screens */
+      height: 70px;
+  }
+}
+
+
 .page-header {
-  padding: 2em 0;
+  padding: 0.75em 0;
 }
 
 .page-header__content {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .nav-list {
@@ -211,28 +261,49 @@ section,
 }
 
 .nav-list a {
-  color: var(--clr-neutral-900);
+  color: #000;
   text-decoration: none;
+  text-decoration: none;
+  font-size: 18px;
+  position: relative;
 }
 
-.nav-list a:focus,
+/* .nav-list a:focus,
 .nav-list a:hover {
   color: var(--clr-primary-400);
   text-decoration: underline;
+} */
+
+.nav-list a::after {
+  content: "";
+  width: 0;
+  height: 3px;
+  position: absolute;
+  background: #fc044c;
+  left: 0;
+  bottom: -6px;
+  transition: 0.5s;
+}
+
+.nav-list a:hover::after {
+  width: 100%;
 }
 
 /* //////////////////////
   Footer
   /////////////////////// */
 
-.site-footer {
-  --logo-color: currentColor;
-  padding: 2em 0;
-  color: var(--clr-neutral-100);
-  background-color: var(--clr-primary-500);
+.copyright {
+  width: 100%;
   text-align: center;
+  margin-top: 0px;
+  padding: 25px 0;
+  background: #fff;
 }
 
+.copyright span {
+  font-weight: 800;
+}
 /* //////////////////////
   Homepage
   /////////////////////// */
@@ -293,6 +364,7 @@ section,
     "meta"
     "body"
     "button";
+  padding-bottom: 25px;
 }
 
 .snippet__image {
@@ -363,26 +435,29 @@ section,
 }
 
 .btn--primary {
-  background: var(--clr-primary-400);
-  color: var(--clr-neutral-100);
+  background: #fc044c;
+  color: #000;
   font-weight: var(--fw-700);
-  border: 2px solid var(--clr-primary-400);
+  border: 1px solid #fc044c;
+  background-color: transparent;
+  transition: all 0.5s;
+  border-radius: 6px;
 }
 .btn--primary:hover,
 .btn--primary:focus {
-  background: var(--clr-primary-500);
-  border-color: var(--clr-primary-500); 
+  background: #fc044c;
+  color: #fff;
 }
 
 .btn--neutral {
-  background-color: var(--clr-neutral-100);
-  color: var(--clr-neutral-900);
+  background-color: #fc044c;
+  color: #fff;
   font-weight: var(--fw-700);
-  border: 2px solid var(--clr-neutral-900);
+  border: 0.5px solid #fc044c;
 }
 
 .btn--neutral:hover,
 .btn--neutral:focus {
-  color: var(--clr-neutral-100);
-  background-color: var(--clr-neutral-900);
+  color: #000;
+  background: #fff;
 }
