@@ -429,10 +429,10 @@ h1.section-title {
   transition: background-color 0.5s ease, color 0.3s ease;
 }
 
-.btn:focus {
+/* .btn:focus {
   outline: 0.125em solid var(--clr-primary-400);
   outline-offset: 0.25em;
-}
+} */
 
 .btn--primary {
   background: #fc044c;
