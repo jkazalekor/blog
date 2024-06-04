@@ -89,6 +89,9 @@ img,
 picture {
   max-width: 100%;
   display: block;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
 }
 
 /* Inherit fonts for inputs and buttons */
@@ -427,6 +430,40 @@ h1.section-title {
   align-self: start;
   justify-self: start;
   transition: background-color 0.5s ease, color 0.3s ease;
+}
+
+pre {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+code {
+  font-family: monospace;
+  color: #fc044c;
+  background-color: #f9f2f4;
+}
+
+a.link {
+  color: #007BFF; /* Blue color */
+  text-decoration: none; /* Remove underline */
+  transition: all 0.3s ease; /* Smooth transition for effects */
+}
+
+/* Hover effect */
+a.link:hover {
+  color: #0056b3; /* Darker blue */
+  background-color: #e9ecef; /* Light grey background */
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Focus effect */
+a.link:focus {
+  outline: none; /* Remove default focus outline */
+  color: #0056b3; /* Darker blue */
+  background-color: #e9ecef; /* Light grey background */
+  box-shadow: 0 0 0 2px #80bdff; /* Add a blue shadow to indicate focus */
+  text-decoration: underline; /* Underline on focus */
 }
 
 /* .btn:focus {
