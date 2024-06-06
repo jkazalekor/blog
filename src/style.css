@@ -498,3 +498,31 @@ a.link:focus {
   color: #000;
   background: #fff;
 }
+
+
+/* Styling the image container */
+.image-container {
+  display: flex;
+  justify-content: space-between; /* Space between images */
+  align-items: center; /* Align images vertically */
+  flex-wrap: wrap; /* Wrap images if screen size is small */
+  padding: 20px; /* Optional: padding around the container */
+}
+
+/* Styling the images */
+.flex-image {
+  max-width: 48%; /* Ensure images take up less than half the container width with some margin */
+  height: auto; /* Maintain aspect ratio */
+  margin: 1%; /* Optional: margin around each image */
+  border: 2px solid #ddd; /* Optional: add a border */
+  border-radius: 5px; /* Optional: rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: add a shadow */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .flex-image {
+      max-width: 100%; /* Make images full width on smaller screens */
+      margin: 0 0 10px 0; /* Adjust margin for stacked images */
+  }
+}

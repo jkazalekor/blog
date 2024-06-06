@@ -276,4 +276,11 @@ filtered_
 
 </code></pre>
 
+The athletes that are most likely to podium at the 2024 Olympics for 100-meter competition are as follows
 
+ <div class="image-container">
+        <img src="/assets/blog/men_100m.png" alt="Men likely to podium" class="flex-image">
+        <img src="/assets/blog/women_100m.png" alt="Women likely to podium" class="flex-image">
+</div>
+
+This is the <a href="https://colab.research.google.com/drive/1R7DwZiDj8FHwiQYlU4P7XQykEqC6AP72?usp=sharing" target="_blank" class="link">Colab link</a> to the code.
