@@ -602,5 +602,5 @@ cali_women["Adjusted_Salary_USD"].mean().round(3)
 
 </code></pre>
 
-Thank you again for your time and I would be posting more soon, so stay tuned. You can get the dataset and code from my <a href="" targert="_blank" class="link">Colab</a> or my <a href="" targert="_blank" class="link">Github</a>.
+Thank you again for your time and I would be posting more soon, so stay tuned. You can get the dataset and code from my <a href="https://colab.research.google.com/drive/1H4lWUwTxGdPv6EEq5H-eTPlGQ77-ETPV?usp=sharing" targert="_blank" class="link">Colab</a> or my <a href="https://github.com/jkazalekor/Comprehensive-analysis-global-survey" targert="_blank" class="link">Github</a>.
 
