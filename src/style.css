@@ -505,8 +505,8 @@ a.link:focus {
   display: flex;
   justify-content: space-between; /* Space between images */
   align-items: center; /* Align images vertically */
-  flex-wrap: wrap; /* Wrap images if screen size is small */
-  padding: 20px; /* Optional: padding around the container */
+  flex-wrap: wrap; /* Wrap images if screen size is small */ 
+  padding-bottom: 5px;
 }
 
 /* Styling the images */
@@ -525,4 +525,10 @@ a.link:focus {
       max-width: 100%; /* Make images full width on smaller screens */
       margin: 0 0 10px 0; /* Adjust margin for stacked images */
   }
+}
+
+
+.info {
+  font-size: 10px;
+  font-style: italic;
 }

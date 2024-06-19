@@ -7,6 +7,7 @@ image: /assets/blog/financial_returns_vol/pexels-pixabay-210607.jpg
 imageAlt: This is a test
 description: This analysis covers how to calculate the returns of security in Python, the volatility of financial assets, and how to measure them. Also, why diversification of assets in a portfolio is good and how to efficiently diversify your financial assets are discussed.
 ---
+<p class="info">Source: Pixabay.com</p>
 
 This analysis covers how to calculate the returns of security in Python, the volatility of financial assets, and how to measure them. Also, why diversification of assets in a portfolio is good and how to efficiently diversify your financial assets are discussed. Before we get started let's import the necessary libraries and dependencies.
 
@@ -38,6 +39,7 @@ prices_fbtc
  <div class="image-container">
         <img src="/assets/blog/financial_returns_vol/img001.png" alt="image 001" class="flex-image">
 </div>
+<p class="info">Output of prices_fbtc</p>
 
 We see NaN in the Ford series because Bitcoin trades every day of the week while Ford trades on weekdays only. So, let's drop the NaN values before calculating the percentage change (returns) for each asset.
 
@@ -54,6 +56,7 @@ returns_fbtc.head()
  <div class="image-container">
         <img src="/assets/blog/financial_returns_vol/img002.png" alt="image 002" class="flex-image">
 </div>
+<p class="info">Output of returns_fbtc.head()</p>
 
 Now we see the returns for each asset. The first row has no value because it does not have a previous row to calculate the change in percentage. Now let's check how much we would make if we had invested USD1000 in each financial asset. This is calculated by subtracting the initial price from the final price and dividing the result by the initial price. That would be the percentage change over the five years. Multiplying the result by USD1000 would produce the amount you would receive at the end of the 5-year tenure.
 
@@ -109,6 +112,7 @@ prices_1.head()
         <img src="/assets/blog/financial_returns_vol/img003.png" alt="image 003" class="flex-image">
         <img src="/assets/blog/financial_returns_vol/img004.png" alt="image 004" class="flex-image">
 </div>
+<p class="info">Output of returns_1.head() (left) and prices_1.head() (right)</p>
 
 Let's write another function that calculates the returns from the financial assets in "prices_1" and also gives us the total of returns and principal after the stated time period.
 
@@ -156,6 +160,7 @@ totalReturns(prices_1, 1000)
  <div class="image-container">
         <img src="/assets/blog/financial_returns_vol/img005.png" alt="image 005" class="flex-image">
 </div>
+<p class="info">Output of totalReturns(prices_1, 1000)</p>
 
 We see that Bitcoin is still the most profitable and Vanguard ETF made a loss over the five year period.
 
@@ -186,6 +191,7 @@ returns_1.cov()
         <img src="/assets/blog/financial_returns_vol/img006.png" alt="image 006" class="flex-image">
         <img src="/assets/blog/financial_returns_vol/img007.png" alt="image 007" class="flex-image">
 </div>
+<p class="info">Output of returns_1.corr() (left) and returns_1.cov() (right)</p>
 
 Displaying the correlation coefficients of the assets on a heatmap
 
@@ -201,6 +207,7 @@ plt.show()
  <div class="image-container">
         <img src="/assets/blog/financial_returns_vol/img008.png" alt="image 008" class="flex-image">
 </div>
+<p class="info">Heatmap of returns_1.corr()</p>
 
 We see that Apple is strongly correlated with Nasdaq. This is no surprise because Apple is listed Nasdaq. While the Vanguard bond ETF has the weakest correlation coefficients with all other assets.
 Let's given that Bitcoin has the highest volatility (from returns_1.mean()), let's check if investing in such a risky financial asset is worth the risk. We measure the risk against returns with the Sharpe Ratio. Sharpe Ratio  adjusts returns with the risk associated with the asset. 
@@ -257,6 +264,7 @@ comparePerformance(returns_1)
  <div class="image-container">
         <img src="/assets/blog/financial_returns_vol/img009.png" alt="image 009" class="flex-image">
 </div>
+<p class="info">Output of comparePerformance(returns_1)</p>
 
 We have seen the performance of each security, now let us create a portfolio with the stated assets to diversify our portfolio. We will be comparing the performance of the portfolio with each asset to see if diversification creates better returns and also lowers our risk (volatility). First, we assume some weights for our assets in the portfolio. The weights tell us how much emphasis we would be putting on each security. For now lets give each asset an equal weight of 0.25.
 
@@ -271,6 +279,7 @@ returns_1.head()
  <div class="image-container">
         <img src="/assets/blog/financial_returns_vol/img010.png" alt="image 010" class="flex-image">
 </div>
+<p class="info">Output of returns_1.head() after porfolio creation</p>
 
 Let's assume a USD10000 investment in each security and portfolio separately. We do this to analyze the performance of the portfolio against that of the securities. To do that we first add 1 to each value in the dataframe then replace the values in the first row with 10000. After we would use the "cumprod()" method to calculate the cumulative returns of the investment of each asset.
 
@@ -295,6 +304,7 @@ returns_port.tail()
         <img src="/assets/blog/financial_returns_vol/img011.png" alt="image 011" class="flex-image">
         <img src="/assets/blog/financial_returns_vol/img012.png" alt="image 012" class="flex-image">
 </div>
+<p class="info">Output of returns_port.head() (left) and returns_port.tail() (right)</p>
 
 At first glance, we see that the portfolio did better than Nasdaq, and Vanguard but not Bitcoin or Apple. Let's plot the cumulated returns for all the assets on a lineplot to visually inspect the performance of the portfolio. To do that, we need to change the returns_port dataframe from wide to long. That can be achieved with the melt() method.
 
@@ -311,6 +321,7 @@ returns_port.head()
  <div class="image-container">
         <img src="/assets/blog/financial_returns_vol/img013.png" alt="image 013" class="flex-image">
 </div>
+<p class="info">Output of returns_port.head() after using melt() method</p>
 
 <pre><code class="language-python">
 # Plotting the assets in returns_port on a lineplot
@@ -324,6 +335,7 @@ plt.show()
  <div class="image-container">
         <img src="/assets/blog/financial_returns_vol/img014.png" alt="image 014" class="flex-image">
 </div>
+<p class="info">Lineplot of returns_port dataframe</p>
 
 With the visual representation of the performance we see how well the portfolio has performed over the 5 year period. Let us check if it has good volatility and Sharpe Ratio measure given it's performance. We would go back to the returns_1 dataframe for this exploration.
 
@@ -335,6 +347,7 @@ comparePerformance(returns_1)
  <div class="image-container">
         <img src="/assets/blog/financial_returns_vol/img015.png" alt="image 015" class="flex-image">
 </div>
+<p class="info">Output of comparePerformance(returns_1)</p>
 
 We see that the average daily return of the portfolio is higher than Nasdaq's but the volatility measures are equal. Also, the Sharpe Ratio of the portfolio is the highest among all the assets. This shows the power of diversification. The efficient use of diversification can increase the performance of your portfolio. The rule of thumb is to select securities that have weak or fair correlation coefficients. Also, reducing the weight of highly volatile assets reduces the portfolio's volatility and increases its performance. Again let us create a function to effectively reproduce this work for any combination of securities and the portfolio.
 
@@ -389,6 +402,7 @@ plotSecurities(start, end, tickers_1, weights_1, 1000)
  <div class="image-container">
         <img src="/assets/blog/financial_returns_vol/img016.png" alt="image 016" class="flex-image">
 </div>
+<p class="info">Output of plotSecurities(start, end, tickers_1, weights_1, 1000)</p>
 
 <pre><code class="language-python">
 # This function would be similar to comparePerformance but we would be adding the portfolio to the analysis
@@ -450,6 +464,7 @@ comparePerfPort(start, end, tickers_1, weights_1)
  <div class="image-container">
         <img src="/assets/blog/financial_returns_vol/img017.png" alt="image 017" class="flex-image">
 </div>
+<p class="info">Output of comparePerfPort(start, end, tickers_1, weights_1)</p>
 
 So with these functions in place, we can analyze several assets at a time. Let us take a few combinations of assets and weights. Taking S&P 500, Meta, Nvidia, Tesla, and Microsoft. Weights are 20% each over a 5-year period and a hypothetical USD1000 for each security and a portfolio of the securities.
 
@@ -466,6 +481,7 @@ plotSecurities(start, end, tickers_1, weights_1, 10000)
  <div class="image-container">
         <img src="/assets/blog/financial_returns_vol/img018.png" alt="image 018" class="flex-image">
 </div>
+<p class="info">Output of plotSecurities(start, end, tickers_1, weights_1, 10000)</p>
 
 Nvidia's returns is looking like that of a cryptocurrency, LOL. From the diagram, the portfolio is the third-best-performing asset. Now let's check the volatility and Sharpe ratio.
 
@@ -482,6 +498,7 @@ comparePerfPort(start, end, tickers_1, weights_1)
  <div class="image-container">
         <img src="/assets/blog/financial_returns_vol/img019.png" alt="image 019" class="flex-image">
 </div>
+<p class="info">Output of comparePerfPort(start, end, tickers_1, weights_1)</p>
 
 Again we see our portfolio recording the second-highest risk-to-reward ratio (Sharpe Ratio). Also, the portfolio chalked greater daily returns than Meta but is much less volatile. In view of this knowledge, it would be prudent to increase the weight of Nvidia's investment, and reduce the weight of the other securities, especially Tesla. Tesla because it recorded a very high volatility measure given that the return is much smaller than Nvidia. Now lets change the weights to 30% for Nvidia, 16% for Tesla and 18% for the rest.
 
@@ -498,6 +515,7 @@ plotSecurities(start, end, tickers_1, weights_2, 10000)
  <div class="image-container">
         <img src="/assets/blog/financial_returns_vol/img020.png" alt="image 020" class="flex-image">
 </div>
+<p class="info">Output of plotSecurities(start, end, tickers_1, weights_2, 10000) after weights adjustment</p>
 
 In the visual we see the portfolio doing better than all the assets expect Nvidia. Lets check the volatility analysis.
 
@@ -514,6 +532,7 @@ comparePerfPort(start, end, tickers_1, weights_2)
  <div class="image-container">
         <img src="/assets/blog/financial_returns_vol/img021.png" alt="image 021" class="flex-image">
 </div>
+<p class="info">Output of comparePerfPort(start, end, tickers_1, weights_2) after weights adjustment</p>
 
 We see the portfolio performing better than all the other securities except Nvidia. This is for all the available metrics. The portfolio records better average daily returns than Tesla but has lower volatility. Also, the Sharpe Ratio is better than that of all the securities except Nvidia.
 
