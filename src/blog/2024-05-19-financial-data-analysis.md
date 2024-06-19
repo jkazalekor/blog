@@ -5,7 +5,7 @@ date: 2024-06-19
 tags: ['post', 'featured']
 image: /assets/blog/financial_returns_vol/pexels-pixabay-210607.jpg
 imageAlt: This is a test
-description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis accusantium sit illo neque rem omnis quaerat, nam similique vitae delectus ad magni vel quo maxime, magnam placeat. Reprehenderit, distinctio aliquam?
+description: This analysis covers how to calculate the returns of security in Python, the volatility of financial assets, and how to measure them. Also, why diversification of assets in a portfolio is good and how to efficiently diversify your financial assets are discussed.
 ---
 
 This analysis covers how to calculate the returns of security in Python, the volatility of financial assets, and how to measure them. Also, why diversification of assets in a portfolio is good and how to efficiently diversify your financial assets are discussed. Before we get started let's import the necessary libraries and dependencies.
