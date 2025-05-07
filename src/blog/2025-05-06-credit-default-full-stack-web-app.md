@@ -8,11 +8,11 @@ imageAlt: Credit Default Web App
 description: Predicting credit default risk is a critical task in the financial sector. This project delves into building a predictive model using the "Default of Credit Card Clients" dataset from the UCI Machine Learning Repository. The objective is to develop an end-to-end machine learning pipeline, culminating in a deployable web application. 
 ---
 
-## Introduction
+Introduction
 
 Predicting credit default risk is a critical task in the financial sector. This project delves into building a predictive model using the “Default of Credit Card Clients” dataset from the UCI Machine Learning Repository. The objective is to develop an end-to-end machine learning pipeline, culminating in a deployable web application.
 
-## Understanding the Data
+Understanding the Data
 
 The dataset comprises 30,000 observations with 23 features, including credit limit (`LIMIT_BAL`), repayment status over the past six months (`PAY_0` to `PAY_6`), demographic details, and billing/payment amounts. The target variable, `default.payment.next.month`, indicates whether a client defaulted on their next payment.
 
@@ -22,7 +22,7 @@ Initial data exploration involved:
 - Assessing data types and distributions.
 - Understanding the balance between default and non-default classes.
 
-## Exploratory Data Analysis
+Exploratory Data Analysis
 
 Key insights from the exploratory phase included:
 
@@ -32,7 +32,7 @@ Key insights from the exploratory phase included:
 
 Visualizations aided in identifying patterns and relationships among variables, guiding subsequent feature selection.
 
-## Feature Selection & Preprocessing
+Feature Selection & Preprocessing
 
 From the original 23 features, a subset of 10 was selected based on:
 
@@ -46,7 +46,7 @@ Preprocessing steps included:
 - Encoding categorical variables appropriately.
 - Splitting the data into training and testing sets.
 
-## Modeling and Evaluation
+Modeling and Evaluation
 
 Three models were developed:
 
@@ -62,7 +62,7 @@ Hyperparameter tuning was conducted using `GridSearchCV`. Evaluation metrics foc
 
 Both the tuned Random Forest and XGBoost models demonstrated superior performance, with XGBoost slightly outperforming in terms of ROC-AUC.
 
-## Deployment Journey
+Deployment Journey
 
 The initial deployment plan involved AWS Lambda. However, challenges arose due to:
 
@@ -72,7 +72,7 @@ The initial deployment plan involved AWS Lambda. However, challenges arose due t
 
 Consequently, the project pivoted to deploying the application using Streamlit Cloud, leveraging GitHub for version control and dependency management via `requirements.txt`. This approach facilitated a seamless deployment process, albeit with scalability considerations.
 
-## The Live Web App
+The Live Web App
 
 The deployed application is accessible at:
 
@@ -86,7 +86,7 @@ Features include:
 
 While the application serves as a functional demonstration, it is tailored to the specific dataset and lacks features like API integration or model retraining capabilities.
 
-## Reflections and Future Directions
+Reflections and Future Directions
 
 This project underscored the importance of adaptability in deployment strategies and the value of thorough exploratory analysis. Future enhancements could involve:
 
@@ -94,7 +94,7 @@ This project underscored the importance of adaptability in deployment strategies
 - Incorporating additional datasets to improve model generalizability.
 - Implementing features for model retraining and user authentication.
 
-## Project Resources
+Project Resources
 
 - **GitHub Repository**: [github.com/jkazalekor/credit-default-app](https://github.com/jkazalekor/credit-default-app)
 - **Live Application**: [Streamlit App](https://jkazalekor-credit-default-app.streamlit.app/)
