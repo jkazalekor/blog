@@ -1,102 +1,98 @@
 ---
-title: Predicting Credit Default Risk, A Full-Stack Data Science Project
+title: "Predicting Credit Default Risk, A Full-Stack Data Science Project"
 author: Joseph Kwami Azalekor
 date: 2025-05-06
 tags: ["post", "featured"]
 image: /assets/blog/article-4.jpg
 imageAlt: Credit Default Web App
-description: Predicting credit default risk is a critical task in the financial sector. This project delves into building a predictive model using the "Default of Credit Card Clients" dataset from the UCI Machine Learning Repository. 
+description: >
+  This in-depth blog covers a complete machine learning pipeline built to predict credit default risk. It uses real-world financial data, advanced models (XGBoost, Random Forest), and ends with a deployed Streamlit application. The entire project is publicly available via GitHub and includes thorough evaluation and hyperparameter tuning steps.
 ---
 
 <h2>Introduction</h2>
-<p>Predicting credit default risk is a critical task in the financial sector. This project delves into building a predictive model using the “Default of Credit Card Clients” dataset from the UCI Machine Learning Repository. The objective is to develop an end-to-end machine learning pipeline, culminating in a deployable web application.</p>
 
-<h2>Understanding the Data</h2>
-<p>The dataset comprises 30,000 observations with 23 features, including credit limit (<code>LIMIT_BAL</code>), repayment status over the past six months (<code>PAY_0</code> to <code>PAY_6</code>), demographic details, and billing/payment amounts. The target variable, <code>default.payment.next.month</code>, indicates whether a client defaulted on their next payment.</p>
+<p>Credit default prediction is central to financial risk management. In this project, I built a comprehensive machine learning pipeline to predict whether a credit card client will default in the next month. The model was trained on a dataset sourced from the <a href="https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients" target="_blank">UCI Machine Learning Repository</a>. The pipeline includes data preprocessing, feature reduction, model training (Logistic Regression, Random Forest, and XGBoost), and hyperparameter tuning. The final model was deployed using Streamlit and is live <a href="https://jkazalekor-credit-default-app.streamlit.app/">here</a>.</p>
 
-<p>Initial data exploration involved:</p>
+<h2>Dataset Overview</h2>
+
+<p>The dataset contains <strong>30,000 observations</strong> and <strong>24 features</strong> including:</p>
 <ul>
-  <li>Checking for missing values and duplicates.</li>
-  <li>Assessing data types and distributions.</li>
-  <li>Understanding the balance between default and non-default classes.</li>
+  <li><code>LIMIT_BAL</code>: Credit limit for the client</li>
+  <li><code>SEX</code>, <code>EDUCATION</code>, <code>MARRIAGE</code>: Demographic info</li>
+  <li><code>PAY_0</code> to <code>PAY_6</code>: Repayment status over the last six months</li>
+  <li><code>BILL_AMT1</code> to <code>BILL_AMT6</code>: Historical billing amounts</li>
+  <li><code>PAY_AMT1</code> to <code>PAY_AMT6</code>: Repayment amounts</li>
 </ul>
+
+<p>The target variable is <code>default.payment.next.month</code>, where 1 means the client defaulted and 0 means they paid successfully.</p>
 
 <h2>Exploratory Data Analysis</h2>
-<p>Key insights from the exploratory phase included:</p>
-<ul>
-  <li>A noticeable class imbalance, with approximately 22% defaults.</li>
-  <li>Strong correlations between recent repayment behaviors (<code>PAY_1</code>, <code>PAY_2</code>) and default likelihood.</li>
-  <li>Demographic factors like age and credit limit influencing default rates.</li>
-</ul>
 
-<p>Visualizations aided in identifying patterns and relationships among variables, guiding subsequent feature selection.</p>
+<p>Initial exploration revealed no missing values. A class imbalance was evident: only ~22% of clients defaulted. Strong predictors included repayment history (especially <code>PAY_1</code>) and bill amounts. All features were numerical, allowing seamless integration into scikit-learn pipelines.</p>
 
-<h2>Feature Selection & Preprocessing</h2>
-<p>From the original 23 features, a subset of 10 was selected based on:</p>
-<ul>
-  <li>Correlation analysis.</li>
-  <li>Feature importance metrics from preliminary models.</li>
-  <li>Domain knowledge.</li>
-</ul>
+<h2>Feature Selection and Preprocessing</h2>
 
-<p>Preprocessing steps included:</p>
-<ul>
-  <li>Normalizing numerical features using <code>StandardScaler</code>.</li>
-  <li>Encoding categorical variables appropriately.</li>
-  <li>Splitting the data into training and testing sets.</li>
-</ul>
+<p>I reduced the number of features from 24 to 10, focusing on the most predictive ones like <code>LIMIT_BAL</code>, <code>PAY_1</code>, <code>PAY_AMT1</code>, and <code>BILL_AMT1</code>. Standard scaling was applied using <code>StandardScaler</code> to normalize continuous features.</p>
+
+<pre><code class="language-python">
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(df[feature_list])
+</code></pre>
 
 <h2>Modeling and Evaluation</h2>
-<p>Three models were developed:</p>
+
+<p>I evaluated three models: Logistic Regression (baseline), Random Forest, and XGBoost. The dataset was split using <code>train_test_split</code> with 20% for testing. Below is a snippet used to fit XGBoost:</p>
+
+<pre><code class="language-python">
+xgb = XGBClassifier(use_label_encoder=False, eval_metric="logloss")
+xgb.fit(X_train, y_train)
+</code></pre>
+
+<p><strong>Evaluation metrics:</strong></p>
 <ul>
-  <li>Logistic Regression (baseline).</li>
-  <li>Random Forest Classifier.</li>
-  <li>XGBoost Classifier.</li>
+  <li><strong>Accuracy</strong>: Measures overall correct predictions</li>
+  <li><strong>F1-Score</strong>: Weighted average of precision and recall</li>
+  <li><strong>ROC-AUC</strong>: Model discrimination ability</li>
 </ul>
 
-<p>Hyperparameter tuning was conducted using <code>GridSearchCV</code>. Evaluation metrics focused on:</p>
+<p>Hyperparameter tuning was performed using both <code>GridSearchCV</code> and <code>RandomizedSearchCV</code>. XGBoost emerged as the top-performing model with the highest F1 and ROC-AUC.</p>
+
+<h2>Deployment</h2>
+
+<p>The deployment goal was to host the model via an API. However, AWS Lambda had package size limitations that made deploying XGBoost infeasible under the free tier. As a result, I pivoted to <strong>Streamlit Cloud</strong>, which integrates directly with GitHub and supports Python natively.</p>
+
+<pre><code class="language-python">
+joblib.dump(xgb_best, "xgb_model.pkl")
+</code></pre>
+
+<p>The final app was deployed from the following GitHub repository:  
+<a href="https://github.com/jkazalekor/credit-default-app">github.com/jkazalekor/credit-default-app</a></p>
+
+<h2>Web App Features</h2>
+
 <ul>
-  <li>Accuracy.</li>
-  <li>F1-Score.</li>
-  <li>ROC-AUC Score.</li>
+  <li>User inputs financial info: credit limit, repayment history, and bill/payment amounts</li>
+  <li>Option to choose between Random Forest and XGBoost model</li>
+  <li>Displays prediction: <em>Will the client default?</em></li>
+  <li>Shows confidence probability and selected model's performance</li>
 </ul>
 
-<p>Both the tuned Random Forest and XGBoost models demonstrated superior performance, with XGBoost slightly outperforming in terms of ROC-AUC.</p>
+<p>App is live here: <a href="https://jkazalekor-credit-default-app.streamlit.app/">credit-default-app.streamlit.app</a></p>
 
-<h2>Deployment Journey</h2>
-<p>The initial deployment plan involved AWS Lambda. However, challenges arose due to:</p>
+<h2>Reflections and Learnings</h2>
+
+<p>This project deepened my understanding of both data preprocessing and deployment challenges in machine learning. Choosing the right model and tuning it for real-world performance required both statistical and engineering tradeoffs. I learned:</p>
+
 <ul>
-  <li>AWS Lambda's package size limitations.</li>
-  <li>The absence of a native Python environment in the free tier.</li>
-  <li>The complexity of managing dependencies exceeding 250MB.</li>
+  <li>Deployment constraints should be considered from the start</li>
+  <li>Random Forest and XGBoost perform well on tabular financial data</li>
+  <li>Feature importance scores can guide useful dimensionality reduction</li>
 </ul>
 
-<p>Consequently, the project pivoted to deploying the application using Streamlit Cloud, leveraging GitHub for version control and dependency management via <code>requirements.txt</code>. This approach facilitated a seamless deployment process, albeit with scalability considerations.</p>
+<h2>Project Links</h2>
 
-<h2>The Live Web App</h2>
-<p>The deployed application is accessible at:</p>
-<p><a href="https://jkazalekor-credit-default-app.streamlit.app/">https://jkazalekor-credit-default-app.streamlit.app/</a></p>
-
-<p>Features include:</p>
-<ul>
-  <li>User-friendly interface for inputting client data.</li>
-  <li>Real-time predictions indicating default probabilities.</li>
-  <li>Display of the model used for prediction (Random Forest or XGBoost).</li>
-</ul>
-
-<p>While the application serves as a functional demonstration, it is tailored to the specific dataset and lacks features like API integration or model retraining capabilities.</p>
-
-<h2>Reflections and Future Directions</h2>
-<p>This project underscored the importance of adaptability in deployment strategies and the value of thorough exploratory analysis. Future enhancements could involve:</p>
-<ul>
-  <li>Exploring scalable deployment options like AWS SageMaker.</li>
-  <li>Incorporating additional datasets to improve model generalizability.</li>
-  <li>Implementing features for model retraining and user authentication.</li>
-</ul>
-
-<h2>Project Resources</h2>
 <ul>
   <li><strong>GitHub Repository:</strong> <a href="https://github.com/jkazalekor/credit-default-app">github.com/jkazalekor/credit-default-app</a></li>
-  <li><strong>Live Application:</strong> <a href="https://jkazalekor-credit-default-app.streamlit.app/">Streamlit App</a></li>
+  <li><strong>Live Web App:</strong> <a href="https://jkazalekor-credit-default-app.streamlit.app/">Streamlit App</a></li>
   <li><strong>Dataset:</strong> <a href="https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients">UCI Repository</a></li>
 </ul>
