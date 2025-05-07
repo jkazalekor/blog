@@ -5,7 +5,7 @@ date: 2025-05-06
 tags: ["post", "featured"]
 image: /assets/blog/article-4.jpg
 imageAlt: Credit Default Web App
-description: Predicting credit default risk is a critical task in the financial sector. This project delves into building a predictive model using the "Default of Credit Card Clients" dataset from the UCI Machine Learning Repository. The objective is to develop an end-to-end machine learning pipeline, culminating in a deployable web application. 
+description: Predicting credit default risk is a critical task in the financial sector. This project delves into building a predictive model using the "Default of Credit Card Clients" dataset from the UCI Machine Learning Repository. 
 ---
 
 <h2>Introduction</h2>
