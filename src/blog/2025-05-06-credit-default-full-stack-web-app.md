@@ -1,5 +1,5 @@
 ---
-title: Predicting Credit Default Risk: A Full-Stack Data Science Project
+title: Predicting Credit Default Risk, A Full-Stack Data Science Project
 author: Joseph Kwami Azalekor
 date: 2025-05-06
 tags: ["post", "featured"]
