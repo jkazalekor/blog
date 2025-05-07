@@ -3,7 +3,7 @@ title: "Predicting Credit Default Risk, A Full-Stack Data Science Project"
 author: Joseph Kwami Azalekor
 date: 2025-05-06
 tags: ["post", "featured"]
-image: /assets/blog/article-4.jpg
+image: /assets/blog/credit_default_web_app/credit_default_web_app.png
 imageAlt: Credit Default Web App
 description: >
   This in-depth blog covers a complete machine learning pipeline built to predict credit default risk. It uses real-world financial data, advanced models (XGBoost, Random Forest), and ends with a deployed Streamlit application. The entire project is publicly available via GitHub and includes thorough evaluation and hyperparameter tuning steps.
